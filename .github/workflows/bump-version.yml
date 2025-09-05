@@ -17,5 +17,15 @@ jobs:
         with:
           bump-type: 'patch'
           current-version: '0.0.1'
+      - name: Create release with bumped version
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.bump.outputs.version }}
+          release_name: ${{ steps.bump.outputs.version }}
+          draft: false
+          prerelease: false
       - name: Use bumped version
         run: echo "Bumped version is ${{ steps.bump.outputs.version }}"
