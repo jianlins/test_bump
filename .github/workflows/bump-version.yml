@@ -24,8 +24,8 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.bump.outputs.version }}
-          name: ${{ steps.bump.outputs.version }}
+          tag: pub_${{ steps.bump.outputs.version }}
+          name: pub_${{ steps.bump.outputs.version }}
           draft: false
           prerelease: false
       - name: Use bumped version
