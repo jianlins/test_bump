@@ -29,4 +29,4 @@ jobs:
           draft: false
           prerelease: false
       - name: Use bumped version
-        run: echo "Bumped version is ${{ steps.bump.outputs.version }}"
+        run: echo "Bumped version is pub_${{ steps.bump.outputs.version }}"
