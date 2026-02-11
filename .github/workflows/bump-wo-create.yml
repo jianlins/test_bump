@@ -1,0 +1,27 @@
+name: Check and Bump Version WO Create
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Check and bump version
+        id: bump
+        uses: jianlins/check_bump_version@v2
+        with:
+          bump-type: 'patch'
+          prefix: 'pub_'
+          current-version: '0.0.1'
+          create-release: 'false'
+
+      - name: Use bumped version
+        run: echo "Bumped version is pub_${{ steps.bump.outputs.version }}"
